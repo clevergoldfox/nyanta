@@ -66,10 +66,10 @@ export function ContactSection() {
                         メールアドレス
                       </h4>
                       <a
-                        href="mailto:kcraftcode0212@gmail.com"
+                        href="mailto:clever.goldfox@gmail.com"
                         className="text-slate-400 transition-colors hover:text-cyan-400"
                       >
-                        kcraftcode0212@gmail.com
+                        clever.goldfox@gmail.com
                       </a>
                     </div>
                   </div>
@@ -91,12 +91,12 @@ export function ContactSection() {
                     <div>
                       <h4 className="mb-1 font-medium text-slate-300">GitHub</h4>
                       <a
-                        href="https://github.com/kcraftcode"
+                        href="https://github.com/bct-crypto"
                         target="_blank"
                         rel="noopener noreferrer"
                         className="text-cyan-400 transition-colors hover:text-cyan-300"
                       >
-                        github.com/kcraftcode
+                        github.com/bct-crypto
                       </a>
                     </div>
                   </div>

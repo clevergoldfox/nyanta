@@ -21,7 +21,7 @@ export function Footer() {
               <div className="flex items-center space-x-2">
                 <Hexagon className="h-6 w-6 text-cyan-500" />
                 <span className="bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-lg font-bold text-transparent">
-                  中村邦彦
+                  山本 裕
                 </span>
               </div>
               <p className="text-sm text-slate-400">
@@ -30,7 +30,7 @@ export function Footer() {
               </p>
               <div className="flex space-x-4">
                 <a
-                  href="https://github.com/kcraftcode"
+                  href="https://github.com/bct-crypto"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="text-slate-400 transition-colors hover:text-cyan-400"
@@ -39,7 +39,7 @@ export function Footer() {
                   <Github className="h-5 w-5" />
                 </a>
                 <a
-                  href="mailto:kcraftcode0212@gmail.com"
+                  href="mailto:clever.goldfox@gmail.com"
                   className="text-slate-400 transition-colors hover:text-cyan-400"
                   aria-label="Email"
                 >
@@ -103,7 +103,7 @@ export function Footer() {
 
           <div className="flex flex-col items-center justify-between border-t border-slate-800 py-6 md:flex-row">
             <div className="mb-4 flex items-center text-center text-sm text-slate-500 md:mb-0 md:text-left">
-              © 2025 中村邦彦. All rights reserved. Made with
+              © 2025 山本 裕. All rights reserved. Made with
               <Heart className="mx-1 inline-block h-3 w-3 text-red-500" /> in
               Japan
             </div>

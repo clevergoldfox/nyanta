@@ -134,7 +134,7 @@ export function HeroSection() {
               </Badge>
               <h1 className="text-4xl font-bold leading-tight md:text-5xl lg:text-6xl">
                 <span className="bg-gradient-to-r from-cyan-400 via-blue-500 to-purple-600 bg-clip-text text-transparent">
-                  中村邦彦
+                  山本 裕
                 </span>
               </h1>
               <div className="mt-2 h-10 text-xl text-slate-300 md:text-2xl">

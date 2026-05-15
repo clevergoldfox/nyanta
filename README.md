@@ -1,7 +1,7 @@
-# 中村邦彦 - ポートフォリオサイト
+# 山本 裕 - ポートフォリオサイト
 
-フリーランスITエンジニア 中村邦彦氏のポートフォリオサイト。
-[kunihiko-nakamura.vercel.app](https://kunihiko-nakamura.vercel.app/) を元に再構築したソースコードです。
+フリーランスITエンジニア 山本 裕氏のポートフォリオサイト。
+[nyanta.vercel.app](https://nyanta.vercel.app//) を元に再構築したソースコードです。
 
 ## 技術スタック
 

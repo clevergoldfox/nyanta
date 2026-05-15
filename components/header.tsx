@@ -38,7 +38,7 @@ export function Header() {
         <div className="flex items-center space-x-2">
           <Hexagon className="h-8 w-8 text-cyan-500" />
           <span className="bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-xl font-bold text-transparent">
-            中村邦彦
+            山本 裕
           </span>
         </div>
         <nav className="hidden items-center space-x-6 md:flex">
