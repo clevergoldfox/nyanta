@@ -1,6 +1,7 @@
 "use client"
 
-import { Github, Heart, Hexagon, Linkedin, Mail, Twitter } from "lucide-react"
+import { Github, Heart, Hexagon, Mail } from "lucide-react"
+import { ChatWorkIcon, LineIcon } from "@/components/icons"
 
 const quickLinks = [
   { label: "ホーム", href: "#home" },
@@ -48,16 +49,16 @@ export function Footer() {
                 <a
                   href="#"
                   className="text-slate-400 transition-colors hover:text-cyan-400"
-                  aria-label="Twitter"
+                  aria-label="ChatWork"
                 >
-                  <Twitter className="h-5 w-5" />
+                  <ChatWorkIcon className="h-5 w-5" />
                 </a>
                 <a
                   href="#"
                   className="text-slate-400 transition-colors hover:text-cyan-400"
-                  aria-label="LinkedIn"
+                  aria-label="LINE"
                 >
-                  <Linkedin className="h-5 w-5" />
+                  <LineIcon className="h-5 w-5" />
                 </a>
               </div>
             </div>
