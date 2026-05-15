@@ -103,9 +103,9 @@ export function Footer() {
 
           <div className="flex flex-col items-center justify-between border-t border-slate-800 py-6 md:flex-row">
             <div className="mb-4 flex items-center text-center text-sm text-slate-500 md:mb-0 md:text-left">
-              © 2025 山本 裕. All rights reserved. Made with
-              <Heart className="mx-1 inline-block h-3 w-3 text-red-500" /> in
-              Japan
+              © 2026 山本 裕. All rights reserved. Made with
+              <Heart className="mx-1 inline-block h-3 w-3 text-red-500" /> by
+              ny@nta
             </div>
           </div>
         </div>

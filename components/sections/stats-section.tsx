@@ -9,25 +9,25 @@ const stats = [
   {
     icon: CheckCircle,
     label: "完了プロジェクト",
-    value: 0,
+    value: 120,
     color: "cyan",
   },
   {
     icon: Users,
     label: "クライアント数",
-    value: 0,
+    value: 85,
     color: "blue",
   },
   {
     icon: Clock,
     label: "業界経験年数",
-    value: 0,
+    value: 7,
     color: "purple",
   },
   {
     icon: Code,
     label: "使用技術スタック",
-    value: 0,
+    value: 20,
     color: "green",
   },
 ]

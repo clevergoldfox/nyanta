@@ -115,7 +115,7 @@ export function ContactSection() {
                     リモートワーク: 全国対応
                   </p>
                   <p className="text-slate-400">
-                    オンサイト: 東京、大阪、福岡（出張可）
+                    オンサイト: 東京、大阪、福岡
                   </p>
                 </div>
               </CardContent>

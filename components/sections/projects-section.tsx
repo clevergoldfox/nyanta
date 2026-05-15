@@ -79,7 +79,7 @@ const projects: Project[] = [
       "提案成約率が3倍に向上",
       "導入企業数12社を達成",
     ],
-    liveUrl: "#",
+    liveUrl: "https://sikiapi.com/",
   },
   {
     title: "クラウドベース予約システム",
@@ -119,7 +119,7 @@ const projects: Project[] = [
       "顧客満足度が30%向上",
       "6ヶ月で100社以上の導入実績",
     ],
-    liveUrl: "#",
+    liveUrl: "https://repittebeauty.cnctor.jp/",
   },
   {
     title: "フィンテック分析ツール",
@@ -161,7 +161,7 @@ const projects: Project[] = [
       "月次運用利回りが+12%",
       "ファンド3社で本番運用中",
     ],
-    liveUrl: "#",
+    liveUrl: "https://jp.dotdata.com/",
   },
   {
     title: "スマートホーム管理アプリ",
@@ -202,7 +202,7 @@ const projects: Project[] = [
       "登録IoT機器数10万台超",
       "セキュリティインシデント0件",
     ],
-    liveUrl: "#",
+    liveUrl: "https://linkjapan.co.jp/",
   },
   {
     title: "メタバース展示会プラットフォーム",
@@ -244,7 +244,7 @@ const projects: Project[] = [
       "平均滞在時間28分",
       "主催企業の運営コスト40%削減",
     ],
-    liveUrl: "#",
+    liveUrl: "https://ziku.inc/",
   },
   {
     title: "AI搭載チャットボット",
@@ -286,7 +286,7 @@ const projects: Project[] = [
       "24時間対応で機会損失を防止",
       "カスタマーサポートコスト45%削減",
     ],
-    liveUrl: "#",
+    liveUrl: "https://first-contact.jp/",
   },
 ]
 
