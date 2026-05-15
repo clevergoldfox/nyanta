@@ -1,16 +1,18 @@
 "use client"
 
 import { useEffect, useRef, useState } from "react"
+import Image from "next/image"
 import { motion } from "framer-motion"
 import { ArrowRight, Code, Database, Globe, Smartphone, Sparkles } from "lucide-react"
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
 
 const roles = [
-  "システム開発エンジニア",
-  "Web開発エンジニア",
-  "AI開発エンジニア",
-  "クラウドアーキテクト",
+  "フルスタックエンジニア",
+  "ウェブ開発エンジニア",
+  "AIエンジニア",
+  "IOSおよびモバイルアプリエンジニア",
+  "インフラエンジニア",
 ]
 
 function Typewriter() {
@@ -20,24 +22,27 @@ function Typewriter() {
 
   useEffect(() => {
     const current = roles[roleIndex]
-    const timeout = setTimeout(
+
+    if (!deleting && text === current) {
+      const t = setTimeout(() => setDeleting(true), 1500)
+      return () => clearTimeout(t)
+    }
+
+    if (deleting && text === "") {
+      setDeleting(false)
+      setRoleIndex((i) => (i + 1) % roles.length)
+      return
+    }
+
+    const t = setTimeout(
       () => {
-        if (!deleting) {
-          setText(current.slice(0, text.length + 1))
-          if (text.length + 1 === current.length) {
-            setTimeout(() => setDeleting(true), 1500)
-          }
-        } else {
-          setText(current.slice(0, text.length - 1))
-          if (text.length === 0) {
-            setDeleting(false)
-            setRoleIndex((roleIndex + 1) % roles.length)
-          }
-        }
+        setText((prev) =>
+          deleting ? prev.slice(0, -1) : current.slice(0, prev.length + 1)
+        )
       },
-      deleting ? 50 : 100
+      deleting ? 60 : 110
     )
-    return () => clearTimeout(timeout)
+    return () => clearTimeout(t)
   }, [text, deleting, roleIndex])
 
   return (
@@ -104,10 +109,15 @@ function HeroVisual() {
       <canvas ref={canvasRef} className="absolute inset-0 h-full w-full" />
       <div className="absolute inset-0 flex items-center justify-center">
         <div className="relative h-48 w-48 overflow-hidden rounded-full border-4 border-cyan-500/30">
-          <div className="absolute inset-0 bg-gradient-to-br from-cyan-500/20 to-blue-600/20" />
-          <div className="flex h-full w-full items-center justify-center bg-cyan-900/40 text-6xl font-bold text-cyan-300">
-            中
-          </div>
+          <Image
+            src="/uniform.png"
+            alt="山本 裕"
+            fill
+            sizes="192px"
+            className="object-cover"
+            priority
+          />
+          <div className="pointer-events-none absolute inset-0 bg-gradient-to-br from-cyan-500/10 to-blue-600/10" />
         </div>
       </div>
     </div>
