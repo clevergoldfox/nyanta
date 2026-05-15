@@ -5,6 +5,7 @@ import { ParticleBackground } from "@/components/particle-background"
 import { LoadingScreen } from "@/components/loading-screen"
 import { Header } from "@/components/header"
 import { Footer } from "@/components/footer"
+import { BackToTop } from "@/components/back-to-top"
 import { HeroSection } from "@/components/sections/hero-section"
 import { StatsSection } from "@/components/sections/stats-section"
 import { SkillsSection } from "@/components/sections/skills-section"
@@ -47,6 +48,8 @@ export default function Home() {
       </main>
 
       <Footer />
+
+      <BackToTop />
     </div>
   )
 }

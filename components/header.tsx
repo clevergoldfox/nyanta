@@ -11,8 +11,9 @@ const navItems = [
   { label: "プロジェクト", href: "#projects" },
   { label: "経歴", href: "#timeline" },
   { label: "ブログ", href: "#blog" },
-  { label: "お問い合わせ", href: "#contact" },
 ]
+
+const ctaItem = { label: "お問い合わせ", href: "#contact" }
 
 export function Header() {
   const [scrolled, setScrolled] = useState(false)
@@ -52,6 +53,12 @@ export function Header() {
               <span className="absolute -bottom-1 left-0 h-0.5 w-0 bg-cyan-400 transition-all duration-300 group-hover:w-full" />
             </a>
           ))}
+          <a
+            href={ctaItem.href}
+            className="rounded-full bg-gradient-to-r from-cyan-600 to-blue-600 px-5 py-2 text-sm font-medium text-white shadow-md shadow-cyan-500/20 transition-all duration-300 hover:from-cyan-500 hover:to-blue-500 hover:shadow-lg hover:shadow-cyan-500/40"
+          >
+            {ctaItem.label}
+          </a>
         </nav>
       </div>
     </motion.header>
