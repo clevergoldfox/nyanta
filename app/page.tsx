@@ -1,7 +1,7 @@
 "use client"
 
 import { useEffect, useState } from "react"
-import { ParticleBackground } from "@/components/particle-background"
+import { EarthBackground } from "@/components/earth-background"
 import { LoadingScreen } from "@/components/loading-screen"
 import { Header } from "@/components/header"
 import { Footer } from "@/components/footer"
@@ -28,8 +28,8 @@ export default function Home() {
   }, [loading])
 
   return (
-    <div className="relative min-h-screen overflow-hidden bg-gradient-to-br from-black to-slate-900 text-slate-100">
-      <ParticleBackground />
+    <div className="relative min-h-screen overflow-hidden bg-[#020a1a] text-slate-100">
+      <EarthBackground />
 
       {loading && <LoadingScreen onComplete={() => setLoading(false)} />}
 
