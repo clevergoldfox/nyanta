@@ -47,14 +47,14 @@ export function Footer() {
                   <Mail className="h-5 w-5" />
                 </a>
                 <a
-                  href="#"
+                  href="https://www.chatwork.com/clever1214"
                   className="text-slate-400 transition-colors hover:text-cyan-400"
                   aria-label="ChatWork"
                 >
                   <ChatWorkIcon className="h-5 w-5" />
                 </a>
                 <a
-                  href="#"
+                  href="https://line.me/R/ti/p/@757imynx"
                   className="text-slate-400 transition-colors hover:text-cyan-400"
                   aria-label="LINE"
                 >
