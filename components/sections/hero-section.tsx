@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, useState } from "react"
 import Image from "next/image"
-import { motion } from "framer-motion"
+import { AnimatePresence, motion } from "framer-motion"
 import { ArrowRight, Code, Database, Globe, Smartphone, Sparkles } from "lucide-react"
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
@@ -53,8 +53,43 @@ function Typewriter() {
   )
 }
 
+const heroImages = [
+  { src: "/cartoon.jpg", alt: "山本 裕（イラスト）" },
+  { src: "/uniform.png", alt: "山本 裕（プロフィール）" },
+  { src: "/working.png", alt: "山本 裕（ワーキング）" },
+]
+
+const imageVariants = [
+  // Fade + zoom
+  {
+    initial: { opacity: 0, scale: 0.7 },
+    animate: { opacity: 1, scale: 1 },
+    exit: { opacity: 0, scale: 1.15 },
+  },
+  // 3D Y-flip (split feel)
+  {
+    initial: { opacity: 0, rotateY: 90 },
+    animate: { opacity: 1, rotateY: 0 },
+    exit: { opacity: 0, rotateY: -90 },
+  },
+  // Slide horizontally
+  {
+    initial: { opacity: 0, x: 120 },
+    animate: { opacity: 1, x: 0 },
+    exit: { opacity: 0, x: -120 },
+  },
+]
+
 function HeroVisual() {
   const canvasRef = useRef<HTMLCanvasElement>(null)
+  const [imageIndex, setImageIndex] = useState(0)
+
+  useEffect(() => {
+    const id = setInterval(() => {
+      setImageIndex((i) => (i + 1) % heroImages.length)
+    }, 2000)
+    return () => clearInterval(id)
+  }, [])
 
   useEffect(() => {
     const canvas = canvasRef.current
@@ -64,7 +99,7 @@ function HeroVisual() {
 
     let animationId: number
     let angle = 0
-    const size = 400
+    const size = 520
     canvas.width = size
     canvas.height = size
 
@@ -74,14 +109,14 @@ function HeroVisual() {
       const cy = size / 2
 
       for (let ring = 0; ring < 3; ring++) {
-        const radius = 100 + ring * 40
+        const radius = 130 + ring * 52
         const dots = 12 + ring * 6
         for (let i = 0; i < dots; i++) {
           const a = (i / dots) * Math.PI * 2 + angle * (ring % 2 === 0 ? 1 : -1)
           const x = cx + Math.cos(a) * radius
           const y = cy + Math.sin(a) * radius
           ctx.beginPath()
-          ctx.arc(x, y, 2, 0, Math.PI * 2)
+          ctx.arc(x, y, 2.6, 0, Math.PI * 2)
           ctx.fillStyle =
             ring === 0
               ? "rgba(34, 211, 238, 0.8)"
@@ -104,19 +139,33 @@ function HeroVisual() {
     return () => cancelAnimationFrame(animationId)
   }, [])
 
+  const current = heroImages[imageIndex]
+  const variant = imageVariants[imageIndex % imageVariants.length]
+
   return (
-    <div className="relative mx-auto aspect-square w-full max-w-md">
+    <div className="relative mx-auto aspect-square w-full max-w-xl">
       <canvas ref={canvasRef} className="absolute inset-0 h-full w-full" />
-      <div className="absolute inset-0 flex items-center justify-center">
-        <div className="relative h-48 w-48 overflow-hidden rounded-full border-4 border-cyan-500/30">
-          <Image
-            src="/uniform.png"
-            alt="山本 裕"
-            fill
-            sizes="192px"
-            className="object-cover"
-            priority
-          />
+      <div className="absolute inset-0 flex items-center justify-center [perspective:1200px]">
+        <div className="relative h-64 w-64 overflow-hidden rounded-full border-4 border-cyan-500/30 shadow-xl shadow-cyan-500/20">
+          <AnimatePresence>
+            <motion.div
+              key={imageIndex}
+              initial={variant.initial}
+              animate={variant.animate}
+              exit={variant.exit}
+              transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+              className="absolute inset-0"
+            >
+              <Image
+                src={current.src}
+                alt={current.alt}
+                fill
+                sizes="256px"
+                className="object-cover"
+                priority={imageIndex === 0}
+              />
+            </motion.div>
+          </AnimatePresence>
           <div className="pointer-events-none absolute inset-0 bg-gradient-to-br from-cyan-500/10 to-blue-600/10" />
         </div>
       </div>
