@@ -87,7 +87,7 @@ function HeroVisual() {
   useEffect(() => {
     const id = setInterval(() => {
       setImageIndex((i) => (i + 1) % heroImages.length)
-    }, 2000)
+    }, 5000)
     return () => clearInterval(id)
   }, [])
 

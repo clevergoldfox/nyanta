@@ -6,7 +6,7 @@ import { SectionHeading } from "@/components/section-heading"
 
 const timeline = [
   {
-    period: "2023 - 現在",
+    period: "2025 - 現在",
     title: "フリーランスエンジニア",
     description:
       "独立して幅広いクライアントのプロジェクトを担当。Web開発、AI、モバイルアプリなど多岐にわたる分野で活動中。",
@@ -14,7 +14,7 @@ const timeline = [
     color: "cyan",
   },
   {
-    period: "2020 - 2023",
+    period: "2023 - 2025",
     title: "シニアエンジニア",
     description:
       "大手IT企業にてプロジェクトリーダーとして複数のチームを統括。クラウドインフラ構築とAI開発を主導。",
@@ -22,7 +22,7 @@ const timeline = [
     color: "blue",
   },
   {
-    period: "2018 - 2020",
+    period: "2021 - 2023",
     title: "ソフトウェアエンジニア",
     description:
       "フィンテック企業にてバックエンド開発を担当。マイクロサービスアーキテクチャの設計と実装に従事。",
@@ -30,7 +30,7 @@ const timeline = [
     color: "purple",
   },
   {
-    period: "2017",
+    period: "2020",
     title: "技術認定資格取得",
     description:
       "AWS認定ソリューションアーキテクト、Google Cloud認定プロフェッショナルエンジニア資格を取得。",
@@ -38,7 +38,7 @@ const timeline = [
     color: "amber",
   },
   {
-    period: "2015 - 2018",
+    period: "2019 - 2021",
     title: "Webアプリケーション開発者",
     description:
       "スタートアップ企業にてフロントエンド開発を担当。モダンなUIフレームワークを活用したSPA開発を経験。",
@@ -46,7 +46,7 @@ const timeline = [
     color: "green",
   },
   {
-    period: "2015",
+    period: "2018",
     title: "情報工学修士課程修了",
     description:
       "東京工科大学大学院にて情報工学の修士号を取得。機械学習と自然言語処理を専攻。",
