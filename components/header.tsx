@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react"
 import { motion } from "framer-motion"
 import { Hexagon } from "lucide-react"
+import { Handshake } from "lucide-react"
 
 const navItems = [
   { label: "ホーム", href: "#home" },
@@ -37,7 +38,7 @@ export function Header() {
     >
       <div className="container mx-auto flex items-center justify-between px-4">
         <div className="flex items-center space-x-2">
-          <Hexagon className="h-8 w-8 text-cyan-500" />
+          <Handshake className="h-8 w-8 text-cyan-500" />
           <span className="bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-xl font-bold text-transparent">
             山本 裕
           </span>

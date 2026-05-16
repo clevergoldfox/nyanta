@@ -1,6 +1,6 @@
 "use client"
 
-import { Github, Heart, Hexagon, Mail } from "lucide-react"
+import { Github, Heart, Handshake, Mail } from "lucide-react"
 import { ChatWorkIcon, LineIcon } from "@/components/icons"
 
 const quickLinks = [
@@ -20,7 +20,7 @@ export function Footer() {
           <div className="grid grid-cols-1 gap-8 md:grid-cols-3">
             <div className="space-y-4">
               <div className="flex items-center space-x-2">
-                <Hexagon className="h-6 w-6 text-cyan-500" />
+                <Handshake className="h-6 w-6 text-cyan-500" />
                 <span className="bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-lg font-bold text-transparent">
                   山本 裕
                 </span>
