@@ -7,51 +7,20 @@ import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardFooter, CardHeader } from "@/components/ui/card"
 import { SectionHeading } from "@/components/section-heading"
+import { useT } from "@/components/locale-provider"
 
-const posts = [
-  {
-    title: "【2024年最新】Web開発トレンド2025年予測",
-    image: "/blog1.png",
-    category: "Web開発",
-    date: "2024年10月15日",
-    readTime: "5分",
-    excerpt:
-      "フロントエンド開発の最新トレンドと、今後のWeb開発の方向性について解説します。ReactやNext.jsの最新機能も紹介。",
-    tags: ["React", "Next.js", "フロントエンド"],
-  },
-  {
-    title: "AIを活用したビジネス変革",
-    image: "/blog2.jpg",
-    category: "AI",
-    date: "2024年9月22日",
-    readTime: "7分",
-    excerpt:
-      "企業がAIを活用してビジネスプロセスを最適化する方法と、実際の導入事例について詳しく解説します。",
-    tags: ["機械学習", "ビジネス活用", "自動化"],
-  },
-  {
-    title: "クラウドネイティブアーキテクチャ入門",
-    image: "/blog3.png",
-    category: "クラウド",
-    date: "2024年8月10日",
-    readTime: "8分",
-    excerpt:
-      "マイクロサービスとコンテナ技術を活用した、スケーラブルなクラウドネイティブアプリケーションの設計方法。",
-    tags: ["AWS", "Kubernetes", "マイクロサービス"],
-  },
-]
+const postImages = ["/blog1.png", "/blog2.jpg", "/blog3.png"]
 
 export function BlogSection() {
+  const t = useT()
+
   return (
     <section id="blog" className="relative py-20">
       <div className="container mx-auto px-4">
-        <SectionHeading
-          title="技術ブログ"
-          description="最新の技術トレンドや開発のベストプラクティスについての記事をご紹介します。 定期的に更新していますので、ぜひチェックしてください。"
-        />
+        <SectionHeading title={t.blog.title} description={t.blog.description} />
 
         <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
-          {posts.map((post, i) => (
+          {t.blog.items.map((post, i) => (
             <motion.div
               key={post.title}
               initial={{ opacity: 0, y: 20 }}
@@ -62,7 +31,7 @@ export function BlogSection() {
               <Card className="group flex h-full flex-col overflow-hidden border-slate-700/50 bg-slate-900/50 backdrop-blur-sm transition-all duration-300 hover:border-cyan-500/30">
                 <div className="relative aspect-video overflow-hidden">
                   <Image
-                    src={post.image}
+                    src={postImages[i]}
                     alt={post.title}
                     fill
                     className="object-cover transition-transform duration-500 group-hover:scale-105"
@@ -84,6 +53,7 @@ export function BlogSection() {
                     <div className="flex items-center">
                       <Clock className="mr-1 h-3 w-3" />
                       {post.readTime}
+                      {t.blog.readSuffix}
                     </div>
                   </div>
                 </CardHeader>
@@ -106,7 +76,7 @@ export function BlogSection() {
                     variant="ghost"
                     className="p-0 text-cyan-400 hover:bg-transparent hover:text-cyan-300"
                   >
-                    続きを読む
+                    {t.blog.readMore}
                     <ArrowRight className="ml-2 h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
                   </Button>
                 </CardFooter>
@@ -117,7 +87,7 @@ export function BlogSection() {
 
         <div className="mt-12 text-center">
           <Button className="bg-gradient-to-r from-cyan-600 to-blue-600 hover:from-cyan-500 hover:to-blue-500">
-            すべての記事を見る
+            {t.blog.seeAll}
             <ArrowRight className="ml-2 h-4 w-4" />
           </Button>
         </div>

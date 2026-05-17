@@ -1,8 +1,10 @@
 "use client"
 
 import { useEffect, useState } from "react"
+import { useT } from "@/components/locale-provider"
 
 export function LoadingScreen({ onComplete }: { onComplete: () => void }) {
+  const t = useT()
   const [progress, setProgress] = useState(0)
 
   useEffect(() => {
@@ -31,7 +33,7 @@ export function LoadingScreen({ onComplete }: { onComplete: () => void }) {
           <div className="absolute inset-8 animate-spin rounded-full border-4 border-r-transparent border-t-transparent border-b-transparent border-l-green-500" />
         </div>
         <div className="mt-4 font-mono text-sm tracking-wider text-cyan-500">
-          読み込み中...
+          {t.loading}
         </div>
         <div className="mt-4 h-1 w-48 overflow-hidden rounded-full bg-slate-800">
           <div

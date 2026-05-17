@@ -7,44 +7,18 @@ import { Avatar, AvatarFallback } from "@/components/ui/avatar"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
 import { SectionHeading } from "@/components/section-heading"
+import { useT } from "@/components/locale-provider"
 
-const testimonials = [
-  {
-    name: "杉山 拓弘",
-    role: "COO",
-    company: "Tres Innovation株式会社",
-    initial: "杉",
-    rating: 5,
-    text: "山本さんには当社のECサイトのフルリニューアルを担当していただきました。技術力はもちろん、ビジネス視点からの提案力も高く、結果として売上が40%向上しました。また機会があればぜひお願いしたいと思います。",
-  },
-  {
-    name: "田中 美咲",
-    role: "代表取締役",
-    company: "株式会社ミライテック",
-    initial: "田",
-    rating: 5,
-    text: "業務システムの開発をお願いしました。要件のヒアリングが丁寧で、こちらの曖昧な要望も的確に汲み取っていただきました。納期も品質も期待以上で、社内の業務効率が大幅に改善しました。",
-  },
-  {
-    name: "佐藤 健一",
-    role: "事業部長",
-    company: "グローバルソリューションズ株式会社",
-    initial: "佐",
-    rating: 5,
-    text: "AIを活用した分析ツールの開発を依頼しました。最新技術への深い理解と、それをビジネスに落とし込む力に感銘を受けました。プロジェクト全体を通してコミュニケーションも円滑でした。",
-  },
-  {
-    name: "鈴木 由香",
-    role: "マーケティング責任者",
-    company: "株式会社クリエイトワークス",
-    initial: "鈴",
-    rating: 5,
-    text: "モバイルアプリの開発でお世話になりました。UI/UXへのこだわりが素晴らしく、ユーザーからの評価も非常に高いです。リリース後のサポートも手厚く、安心してお任せできました。",
-  },
-]
+const RATING = 5
 
 export function TestimonialsSection() {
+  const t = useT()
+  const testimonials = t.testimonials.items
   const [index, setIndex] = useState(0)
+
+  useEffect(() => {
+    setIndex(0)
+  }, [testimonials])
 
   const next = () => setIndex((i) => (i + 1) % testimonials.length)
   const prev = () =>
@@ -53,16 +27,17 @@ export function TestimonialsSection() {
   useEffect(() => {
     const timer = setInterval(next, 6000)
     return () => clearInterval(timer)
-  }, [])
+  }, [testimonials.length])
 
-  const t = testimonials[index]
+  const current = testimonials[index]
+  const initial = current.name.charAt(0)
 
   return (
     <section className="relative py-20">
       <div className="container mx-auto px-4">
         <SectionHeading
-          title="クライアントの声"
-          description="これまでにご依頼いただいたクライアント様からのフィードバックをご紹介します。 お客様の成功が私の成功です。"
+          title={t.testimonials.title}
+          description={t.testimonials.description}
         />
 
         <div className="relative mx-auto max-w-4xl">
@@ -85,18 +60,18 @@ export function TestimonialsSection() {
                     <div className="mb-6 flex flex-col items-start gap-4 md:flex-row md:items-center">
                       <Avatar className="h-16 w-16 border-2 border-cyan-500/30">
                         <AvatarFallback className="bg-cyan-900/50 text-cyan-400">
-                          {t.initial}
+                          {initial}
                         </AvatarFallback>
                       </Avatar>
                       <div>
                         <h3 className="text-xl font-bold text-slate-100">
-                          {t.name}
+                          {current.name}
                         </h3>
                         <p className="text-slate-400">
-                          {t.role}, {t.company}
+                          {current.role}, {current.company}
                         </p>
                         <div className="mt-1 flex">
-                          {Array.from({ length: t.rating }).map((_, i) => (
+                          {Array.from({ length: RATING }).map((_, i) => (
                             <Star
                               key={i}
                               className="h-4 w-4 fill-amber-400 text-amber-400"
@@ -105,7 +80,9 @@ export function TestimonialsSection() {
                         </div>
                       </div>
                     </div>
-                    <p className="text-lg italic text-slate-300">{t.text}</p>
+                    <p className="text-lg italic text-slate-300">
+                      {current.text}
+                    </p>
                   </CardContent>
                 </Card>
               </motion.div>

@@ -3,11 +3,11 @@ import { HomePage } from "@/components/home-page"
 import { translations } from "@/lib/i18n"
 
 export const metadata: Metadata = {
-  title: translations.ja.meta.title,
-  description: translations.ja.meta.description,
-  keywords: translations.ja.meta.keywords,
+  title: translations.en.meta.title,
+  description: translations.en.meta.description,
+  keywords: translations.en.meta.keywords,
 }
 
 export default function Page() {
-  return <HomePage locale="ja" />
+  return <HomePage locale="en" />
 }

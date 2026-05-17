@@ -1,18 +1,24 @@
 "use client"
 
-import { Github, Heart, Handshake, Mail } from "lucide-react"
+import { Github, Handshake, Heart, Mail } from "lucide-react"
 import { ChatWorkIcon, LineIcon } from "@/components/icons"
-
-const quickLinks = [
-  { label: "ホーム", href: "#home" },
-  { label: "スキル", href: "#skills" },
-  { label: "サービス", href: "#services" },
-  { label: "プロジェクト", href: "#projects" },
-  { label: "ブログ", href: "#blog" },
-  { label: "お問い合わせ", href: "#contact" },
-]
+import { useLocale, useT } from "@/components/locale-provider"
 
 export function Footer() {
+  const t = useT()
+  const locale = useLocale()
+  const prefix = locale === "ja" ? "" : `/${locale}`
+  const hashLink = (hash: string) => `${prefix}${hash}`
+
+  const quickLinks = [
+    { label: t.header.nav.home, href: hashLink("#home") },
+    { label: t.header.nav.skills, href: hashLink("#skills") },
+    { label: t.header.nav.services, href: hashLink("#services") },
+    { label: t.header.nav.projects, href: hashLink("#projects") },
+    { label: t.header.nav.blog, href: hashLink("#blog") },
+    { label: t.header.contact, href: hashLink("#contact") },
+  ]
+
   return (
     <footer className="relative z-10 border-t border-slate-800 bg-slate-900/80 backdrop-blur-md">
       <div className="container mx-auto px-4">
@@ -22,13 +28,10 @@ export function Footer() {
               <div className="flex items-center space-x-2">
                 <Handshake className="h-6 w-6 text-cyan-500" />
                 <span className="bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-lg font-bold text-transparent">
-                  山本 裕
+                  {t.header.name}
                 </span>
               </div>
-              <p className="text-sm text-slate-400">
-                フリーランスITエンジニアとして、最先端の技術を駆使してクライアントのビジネス課題を解決します。
-                Web開発からAI、モバイルアプリまで幅広い分野で高品質なソリューションを提供しています。
-              </p>
+              <p className="text-sm text-slate-400">{t.footer.description}</p>
               <div className="flex space-x-4">
                 <a
                   href="https://github.com/bct-crypto"
@@ -65,7 +68,7 @@ export function Footer() {
 
             <div className="space-y-4">
               <h3 className="text-lg font-medium text-slate-200">
-                クイックリンク
+                {t.footer.quickLinksHeading}
               </h3>
               <ul className="space-y-2">
                 {quickLinks.map((link) => (
@@ -84,19 +87,19 @@ export function Footer() {
 
             <div className="space-y-4">
               <h3 className="text-lg font-medium text-slate-200">
-                ニュースレター
+                {t.footer.newsletterHeading}
               </h3>
               <p className="text-sm text-slate-400">
-                最新の技術情報やプロジェクト事例をお届けします。メールアドレスをご登録ください。
+                {t.footer.newsletterDescription}
               </p>
               <div className="flex">
                 <input
                   type="email"
-                  placeholder="メールアドレス"
+                  placeholder={t.footer.newsletterPlaceholder}
                   className="flex-1 rounded-l-md border border-slate-700 bg-slate-800 px-3 py-2 text-sm focus:outline-none focus:ring-1 focus:ring-cyan-500"
                 />
                 <button className="rounded-r-md bg-gradient-to-r from-cyan-600 to-blue-600 px-4 py-2 text-sm font-medium text-white transition-colors hover:from-cyan-500 hover:to-blue-500">
-                  登録
+                  {t.footer.newsletterSubmit}
                 </button>
               </div>
             </div>
@@ -104,9 +107,10 @@ export function Footer() {
 
           <div className="flex flex-col items-center justify-between border-t border-slate-800 py-6 md:flex-row">
             <div className="mb-4 flex items-center text-center text-sm text-slate-500 md:mb-0 md:text-left">
-              © 2026 山本 裕. All rights reserved. Made with
-              <Heart className="mx-1 inline-block h-3 w-3 text-red-500" /> by
-              ny@nta
+              {t.footer.copyrightPrefix} {t.footer.copyrightName}
+              {t.footer.copyrightSuffix}
+              <Heart className="mx-1 inline-block h-3 w-3 text-red-500" />{" "}
+              {t.footer.copyrightTail}
             </div>
           </div>
         </div>

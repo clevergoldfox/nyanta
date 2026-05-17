@@ -6,22 +6,24 @@ import { AnimatePresence, motion } from "framer-motion"
 import { ArrowRight, Code, Database, Globe, Smartphone, Sparkles } from "lucide-react"
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
-
-const roles = [
-  "フルスタックエンジニア",
-  "ウェブ開発エンジニア",
-  "AIエンジニア",
-  "IOSおよびモバイルアプリエンジニア",
-  "インフラエンジニア",
-]
+import { useLocale, useT } from "@/components/locale-provider"
 
 function Typewriter() {
+  const t = useT()
+  const roles = t.hero.roles
   const [text, setText] = useState("")
   const [roleIndex, setRoleIndex] = useState(0)
   const [deleting, setDeleting] = useState(false)
 
   useEffect(() => {
+    setText("")
+    setRoleIndex(0)
+    setDeleting(false)
+  }, [roles])
+
+  useEffect(() => {
     const current = roles[roleIndex]
+    if (!current) return
 
     if (!deleting && text === current) {
       const t = setTimeout(() => setDeleting(true), 1500)
@@ -34,7 +36,7 @@ function Typewriter() {
       return
     }
 
-    const t = setTimeout(
+    const timer = setTimeout(
       () => {
         setText((prev) =>
           deleting ? prev.slice(0, -1) : current.slice(0, prev.length + 1)
@@ -42,8 +44,8 @@ function Typewriter() {
       },
       deleting ? 60 : 110
     )
-    return () => clearTimeout(t)
-  }, [text, deleting, roleIndex])
+    return () => clearTimeout(timer)
+  }, [text, deleting, roleIndex, roles])
 
   return (
     <div className="inline-flex items-center text-xl md:text-2xl">
@@ -54,25 +56,22 @@ function Typewriter() {
 }
 
 const heroImages = [
-  { src: "/cartoon.jpg", alt: "山本 裕（イラスト）" },
-  { src: "/uniform.png", alt: "山本 裕（プロフィール）" },
-  { src: "/working.png", alt: "山本 裕（ワーキング）" },
+  { src: "/cartoon.jpg" },
+  { src: "/uniform.png" },
+  { src: "/working.png" },
 ]
 
 const imageVariants = [
-  // Fade + zoom
   {
     initial: { opacity: 0, scale: 0.7 },
     animate: { opacity: 1, scale: 1 },
     exit: { opacity: 0, scale: 1.15 },
   },
-  // 3D Y-flip (split feel)
   {
     initial: { opacity: 0, rotateY: 90 },
     animate: { opacity: 1, rotateY: 0 },
     exit: { opacity: 0, rotateY: -90 },
   },
-  // Slide horizontally
   {
     initial: { opacity: 0, x: 120 },
     animate: { opacity: 1, x: 0 },
@@ -80,7 +79,7 @@ const imageVariants = [
   },
 ]
 
-function HeroVisual() {
+function HeroVisual({ alt }: { alt: string }) {
   const canvasRef = useRef<HTMLCanvasElement>(null)
   const [imageIndex, setImageIndex] = useState(0)
 
@@ -158,7 +157,7 @@ function HeroVisual() {
             >
               <Image
                 src={current.src}
-                alt={current.alt}
+                alt={alt}
                 fill
                 sizes="256px"
                 className="object-cover"
@@ -174,6 +173,10 @@ function HeroVisual() {
 }
 
 export function HeroSection() {
+  const t = useT()
+  const locale = useLocale()
+  const prefix = locale === "ja" ? "" : `/${locale}`
+
   return (
     <section
       id="home"
@@ -189,11 +192,11 @@ export function HeroSection() {
           >
             <div className="space-y-2">
               <Badge className="border-cyan-500/50 bg-cyan-500/20 px-3 py-1 text-cyan-400 hover:bg-cyan-500/20">
-                フリーランスITエンジニア
+                {t.hero.badge}
               </Badge>
               <h1 className="text-4xl font-bold leading-tight md:text-5xl lg:text-6xl">
                 <span className="bg-gradient-to-r from-cyan-400 via-blue-500 to-purple-600 bg-clip-text text-transparent">
-                  山本 裕
+                  {t.hero.name}
                 </span>
               </h1>
               <div className="mt-2 h-10 text-xl text-slate-300 md:text-2xl">
@@ -201,31 +204,28 @@ export function HeroSection() {
               </div>
             </div>
             <p className="max-w-xl text-lg text-slate-400">
-              フリーランスエンジニアとして、最先端の技術を駆使して
-              クライアントのビジネス課題を解決します。
-              Web開発からAI、モバイルアプリまで幅広い分野で
-              高品質なソリューションを提供しています。
+              {t.hero.description}
             </p>
             <div className="flex flex-wrap gap-3">
               <Badge className="border-cyan-500/50 bg-slate-800/50 px-3 py-1 text-cyan-400 hover:bg-slate-800/50">
                 <Code className="mr-1 h-4 w-4" />
-                システム開発
+                {t.hero.tags.system}
               </Badge>
               <Badge className="border-purple-500/50 bg-slate-800/50 px-3 py-1 text-purple-400 hover:bg-slate-800/50">
                 <Database className="mr-1 h-4 w-4" />
-                AWS構築
+                {t.hero.tags.aws}
               </Badge>
               <Badge className="border-blue-500/50 bg-slate-800/50 px-3 py-1 text-blue-400 hover:bg-slate-800/50">
                 <Globe className="mr-1 h-4 w-4" />
-                Web開発
+                {t.hero.tags.web}
               </Badge>
               <Badge className="border-green-500/50 bg-slate-800/50 px-3 py-1 text-green-400 hover:bg-slate-800/50">
                 <Smartphone className="mr-1 h-4 w-4" />
-                アプリ開発
+                {t.hero.tags.app}
               </Badge>
               <Badge className="border-amber-500/50 bg-slate-800/50 px-3 py-1 text-amber-400 hover:bg-slate-800/50">
                 <Sparkles className="mr-1 h-4 w-4" />
-                AI開発
+                {t.hero.tags.ai}
               </Badge>
             </div>
             <div className="flex flex-wrap gap-4 pt-4">
@@ -234,8 +234,8 @@ export function HeroSection() {
                 className="transform bg-gradient-to-r from-cyan-600 to-blue-600 transition-all duration-300 hover:scale-105 hover:from-cyan-500 hover:to-blue-500"
                 asChild
               >
-                <a href="#contact">
-                  お問い合わせ
+                <a href={`${prefix}#contact`}>
+                  {t.hero.ctaContact}
                   <ArrowRight className="ml-2 h-4 w-4" />
                 </a>
               </Button>
@@ -245,7 +245,7 @@ export function HeroSection() {
                 className="transform border-cyan-500/50 text-cyan-400 transition-all duration-300 hover:scale-105 hover:bg-cyan-950/30"
                 asChild
               >
-                <a href="#projects">プロジェクト実績を見る</a>
+                <a href={`${prefix}#projects`}>{t.hero.ctaProjects}</a>
               </Button>
             </div>
           </motion.div>
@@ -255,7 +255,7 @@ export function HeroSection() {
             transition={{ duration: 0.8, delay: 0.2 }}
             className="relative"
           >
-            <HeroVisual />
+            <HeroVisual alt={t.hero.name} />
           </motion.div>
         </div>
       </div>

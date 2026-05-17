@@ -21,94 +21,15 @@ import {
   CardDescription,
 } from "@/components/ui/card"
 import { SectionHeading } from "@/components/section-heading"
+import { useT } from "@/components/locale-provider"
 
-type Service = {
-  icon: typeof Globe
-  title: string
-  description: string
-  color: string
-  details: string[]
-}
-
-const services: Service[] = [
-  {
-    icon: Globe,
-    title: "Web開発",
-    description: "モダンで高性能なWebアプリケーションの設計・開発",
-    color: "cyan",
-    details: [
-      "レスポンシブWebデザイン",
-      "SPAアプリケーション開発",
-      "ECサイト構築",
-      "CMS実装",
-      "Webパフォーマンス最適化",
-    ],
-  },
-  {
-    icon: Code,
-    title: "システム開発",
-    description: "ビジネスニーズに合わせたカスタムシステムの構築",
-    color: "blue",
-    details: [
-      "業務システム開発",
-      "API設計・開発",
-      "データベース設計",
-      "既存システム連携",
-      "保守・運用サポート",
-    ],
-  },
-  {
-    icon: Server,
-    title: "クラウド構築",
-    description: "スケーラブルで安全なクラウドインフラの設計と実装",
-    color: "purple",
-    details: [
-      "AWS / GCP / Azure構築",
-      "インフラ設計・運用",
-      "CI/CDパイプライン構築",
-      "コンテナオーケストレーション",
-      "セキュリティ強化",
-    ],
-  },
-  {
-    icon: Sparkles,
-    title: "AI・機械学習",
-    description: "データを活用したインテリジェントなソリューション開発",
-    color: "amber",
-    details: [
-      "機械学習モデル開発",
-      "自然言語処理",
-      "画像認識・解析",
-      "レコメンデーションエンジン",
-      "データ分析・可視化",
-    ],
-  },
-  {
-    icon: Smartphone,
-    title: "モバイルアプリ開発",
-    description: "iOS/Android向けの高品質なモバイルアプリケーション開発",
-    color: "green",
-    details: [
-      "iOSネイティブアプリ開発",
-      "Androidネイティブアプリ開発",
-      "クロスプラットフォーム開発",
-      "アプリストアリリース対応",
-      "プッシュ通知・分析の実装",
-    ],
-  },
-  {
-    icon: Gamepad2,
-    title: "ゲーム開発",
-    description: "エンゲージメントの高いゲームアプリケーションの開発",
-    color: "red",
-    details: [
-      "Unity / Unreal Engine開発",
-      "2D / 3Dゲーム開発",
-      "マルチプレイヤー機能",
-      "ゲームAI実装",
-      "ゲーム内課金・収益化",
-    ],
-  },
+const serviceMeta = [
+  { icon: Globe, color: "cyan" },
+  { icon: Code, color: "blue" },
+  { icon: Server, color: "purple" },
+  { icon: Sparkles, color: "amber" },
+  { icon: Smartphone, color: "green" },
+  { icon: Gamepad2, color: "red" },
 ]
 
 const colorMap: Record<
@@ -160,6 +81,7 @@ const colorMap: Record<
 }
 
 export function ServicesSection() {
+  const t = useT()
   const [expanded, setExpanded] = useState<Set<number>>(new Set())
 
   const toggle = (index: number) => {
@@ -174,15 +96,13 @@ export function ServicesSection() {
   return (
     <section id="services" className="relative py-20">
       <div className="container mx-auto px-4">
-        <SectionHeading
-          title="提供サービス"
-          description="ビジネス課題を解決するための包括的なITサービスを提供しています。 最新技術と豊富な経験を活かし、クライアント様のニーズに最適なソリューションを実現します。"
-        />
+        <SectionHeading title={t.services.title} description={t.services.description} />
 
         <div className="grid grid-cols-1 items-start gap-6 md:grid-cols-2 lg:grid-cols-3">
-          {services.map((service, i) => {
-            const c = colorMap[service.color]
-            const Icon = service.icon
+          {t.services.items.map((service, i) => {
+            const meta = serviceMeta[i]
+            const c = colorMap[meta.color]
+            const Icon = meta.icon
             const isOpen = expanded.has(i)
             return (
               <motion.div
@@ -251,7 +171,7 @@ export function ServicesSection() {
                       aria-expanded={isOpen}
                       className={`group p-0 ${c.text} ${c.textHover} hover:bg-transparent`}
                     >
-                      {isOpen ? "詳細を閉じる" : "詳細を見る"}
+                      {isOpen ? t.services.collapse : t.services.expand}
                       <ChevronDown
                         className={`ml-1 h-4 w-4 transition-transform duration-300 ${
                           isOpen ? "rotate-180" : ""

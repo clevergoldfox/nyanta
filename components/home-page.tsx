@@ -1,0 +1,55 @@
+"use client"
+
+import { useEffect, useState } from "react"
+import { LocaleProvider } from "@/components/locale-provider"
+import { ParticleBackground } from "@/components/particle-background"
+import { LoadingScreen } from "@/components/loading-screen"
+import { Header } from "@/components/header"
+import { Footer } from "@/components/footer"
+import { BackToTop } from "@/components/back-to-top"
+import { HeroSection } from "@/components/sections/hero-section"
+import { StatsSection } from "@/components/sections/stats-section"
+import { SkillsSection } from "@/components/sections/skills-section"
+import { ServicesSection } from "@/components/sections/services-section"
+import { ProjectsSection } from "@/components/sections/projects-section"
+import { TestimonialsSection } from "@/components/sections/testimonials-section"
+import { TimelineSection } from "@/components/sections/timeline-section"
+import { BlogSection } from "@/components/sections/blog-section"
+import { ContactSection } from "@/components/sections/contact-section"
+import type { Locale } from "@/lib/i18n"
+
+export function HomePage({ locale }: { locale: Locale }) {
+  const [loading, setLoading] = useState(true)
+
+  useEffect(() => {
+    document.body.style.overflow = loading ? "hidden" : "auto"
+  }, [loading])
+
+  return (
+    <LocaleProvider locale={locale}>
+      <div className="relative min-h-screen overflow-hidden bg-gradient-to-br from-black to-slate-900 text-slate-100">
+        <ParticleBackground />
+
+        {loading && <LoadingScreen onComplete={() => setLoading(false)} />}
+
+        <Header />
+
+        <main className="relative z-10">
+          <HeroSection />
+          <StatsSection />
+          <SkillsSection />
+          <ServicesSection />
+          <ProjectsSection />
+          <TestimonialsSection />
+          <TimelineSection />
+          <BlogSection />
+          <ContactSection />
+        </main>
+
+        <Footer />
+
+        <BackToTop />
+      </div>
+    </LocaleProvider>
+  )
+}

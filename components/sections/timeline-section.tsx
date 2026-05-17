@@ -3,56 +3,15 @@
 import { motion } from "framer-motion"
 import { Award, Briefcase, GraduationCap } from "lucide-react"
 import { SectionHeading } from "@/components/section-heading"
+import { useT } from "@/components/locale-provider"
 
-const timeline = [
-  {
-    period: "2025 - 現在",
-    title: "フリーランスエンジニア",
-    description:
-      "独立して幅広いクライアントのプロジェクトを担当。Web開発、AI、モバイルアプリなど多岐にわたる分野で活動中。",
-    icon: Briefcase,
-    color: "cyan",
-  },
-  {
-    period: "2023 - 2025",
-    title: "シニアエンジニア",
-    description:
-      "大手IT企業にてプロジェクトリーダーとして複数のチームを統括。クラウドインフラ構築とAI開発を主導。",
-    icon: Briefcase,
-    color: "blue",
-  },
-  {
-    period: "2021 - 2023",
-    title: "ソフトウェアエンジニア",
-    description:
-      "フィンテック企業にてバックエンド開発を担当。マイクロサービスアーキテクチャの設計と実装に従事。",
-    icon: Briefcase,
-    color: "purple",
-  },
-  {
-    period: "2020",
-    title: "技術認定資格取得",
-    description:
-      "AWS認定ソリューションアーキテクト、Google Cloud認定プロフェッショナルエンジニア資格を取得。",
-    icon: Award,
-    color: "amber",
-  },
-  {
-    period: "2019 - 2021",
-    title: "Webアプリケーション開発者",
-    description:
-      "スタートアップ企業にてフロントエンド開発を担当。モダンなUIフレームワークを活用したSPA開発を経験。",
-    icon: Briefcase,
-    color: "green",
-  },
-  {
-    period: "2018",
-    title: "情報工学修士課程修了",
-    description:
-      "東京工科大学大学院にて情報工学の修士号を取得。機械学習と自然言語処理を専攻。",
-    icon: GraduationCap,
-    color: "red",
-  },
+const timelineMeta = [
+  { icon: Briefcase, color: "cyan" },
+  { icon: Briefcase, color: "blue" },
+  { icon: Briefcase, color: "purple" },
+  { icon: Award, color: "amber" },
+  { icon: Briefcase, color: "green" },
+  { icon: GraduationCap, color: "red" },
 ]
 
 const colorMap: Record<
@@ -98,20 +57,20 @@ const colorMap: Record<
 }
 
 export function TimelineSection() {
+  const t = useT()
+
   return (
     <section id="timeline" className="relative py-20">
       <div className="container mx-auto px-4">
-        <SectionHeading
-          title="経歴"
-          description="これまでのキャリアと主な実績をご紹介します。 多様な環境での経験が、現在の技術力と問題解決能力の基盤となっています。"
-        />
+        <SectionHeading title={t.timeline.title} description={t.timeline.description} />
 
         <div className="relative mx-auto max-w-4xl">
           <div className="absolute left-0 h-full w-1 transform bg-gradient-to-b from-cyan-500 via-blue-500 to-purple-500 md:left-1/2 md:-translate-x-1/2" />
 
-          {timeline.map((item, i) => {
-            const c = colorMap[item.color]
-            const Icon = item.icon
+          {t.timeline.items.map((item, i) => {
+            const meta = timelineMeta[i]
+            const c = colorMap[meta.color]
+            const Icon = meta.icon
             const isReverse = i % 2 === 0
             return (
               <motion.div

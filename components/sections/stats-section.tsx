@@ -4,32 +4,13 @@ import { useEffect, useRef, useState } from "react"
 import { motion, useInView } from "framer-motion"
 import { CheckCircle, Clock, Code, Users } from "lucide-react"
 import { Card, CardContent } from "@/components/ui/card"
+import { useT } from "@/components/locale-provider"
 
-const stats = [
-  {
-    icon: CheckCircle,
-    label: "完了プロジェクト",
-    value: 120,
-    color: "cyan",
-  },
-  {
-    icon: Users,
-    label: "クライアント数",
-    value: 85,
-    color: "blue",
-  },
-  {
-    icon: Clock,
-    label: "業界経験年数",
-    value: 7,
-    color: "purple",
-  },
-  {
-    icon: Code,
-    label: "使用技術スタック",
-    value: 20,
-    color: "green",
-  },
+const statsMeta = [
+  { icon: CheckCircle, value: 120, color: "cyan" },
+  { icon: Users, value: 85, color: "blue" },
+  { icon: Clock, value: 7, color: "purple" },
+  { icon: Code, value: 20, color: "green" },
 ]
 
 const colorMap: Record<
@@ -88,8 +69,10 @@ function Counter({ target, inView }: { target: number; inView: boolean }) {
 }
 
 export function StatsSection() {
+  const t = useT()
   const ref = useRef(null)
   const inView = useInView(ref, { once: true, margin: "-100px" })
+  const stats = statsMeta.map((meta, i) => ({ ...meta, label: t.stats[i] }))
 
   return (
     <section ref={ref} className="relative py-16">

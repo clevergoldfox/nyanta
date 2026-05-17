@@ -2,21 +2,12 @@
 
 import { useEffect, useState } from "react"
 import { motion } from "framer-motion"
-import { Hexagon } from "lucide-react"
 import { Handshake } from "lucide-react"
-
-const navItems = [
-  { label: "ホーム", href: "#home" },
-  { label: "スキル", href: "#skills" },
-  { label: "サービス", href: "#services" },
-  { label: "プロジェクト", href: "#projects" },
-  { label: "経歴", href: "#timeline" },
-  { label: "ブログ", href: "#blog" },
-]
-
-const ctaItem = { label: "お問い合わせ", href: "#contact" }
+import { useLocale, useT } from "@/components/locale-provider"
 
 export function Header() {
+  const t = useT()
+  const locale = useLocale()
   const [scrolled, setScrolled] = useState(false)
 
   useEffect(() => {
@@ -24,6 +15,18 @@ export function Header() {
     window.addEventListener("scroll", onScroll)
     return () => window.removeEventListener("scroll", onScroll)
   }, [])
+
+  const prefix = locale === "ja" ? "" : `/${locale}`
+  const hashLink = (hash: string) => `${prefix}${hash}`
+
+  const navItems = [
+    { label: t.header.nav.home, href: hashLink("#home") },
+    { label: t.header.nav.skills, href: hashLink("#skills") },
+    { label: t.header.nav.services, href: hashLink("#services") },
+    { label: t.header.nav.projects, href: hashLink("#projects") },
+    { label: t.header.nav.timeline, href: hashLink("#timeline") },
+    { label: t.header.nav.blog, href: hashLink("#blog") },
+  ]
 
   return (
     <motion.header
@@ -40,7 +43,7 @@ export function Header() {
         <div className="flex items-center space-x-2">
           <Handshake className="h-8 w-8 text-cyan-500" />
           <span className="bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-xl font-bold text-transparent">
-            山本 裕
+            {t.header.name}
           </span>
         </div>
         <nav className="hidden items-center space-x-6 md:flex">
@@ -55,10 +58,10 @@ export function Header() {
             </a>
           ))}
           <a
-            href={ctaItem.href}
+            href={hashLink("#contact")}
             className="rounded-full bg-gradient-to-r from-cyan-600 to-blue-600 px-5 py-2 text-sm font-medium text-white shadow-md shadow-cyan-500/20 transition-all duration-300 hover:from-cyan-500 hover:to-blue-500 hover:shadow-lg hover:shadow-cyan-500/40"
           >
-            {ctaItem.label}
+            {t.header.contact}
           </a>
         </nav>
       </div>
