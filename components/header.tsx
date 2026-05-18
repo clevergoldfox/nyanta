@@ -4,6 +4,7 @@ import { useEffect, useState } from "react"
 import { motion } from "framer-motion"
 import { Handshake } from "lucide-react"
 import { useLocale, useT } from "@/components/locale-provider"
+import { LanguageSwitcher } from "@/components/language-switcher"
 
 export function Header() {
   const t = useT()
@@ -46,24 +47,27 @@ export function Header() {
             {t.header.name}
           </span>
         </div>
-        <nav className="hidden items-center space-x-6 md:flex">
-          {navItems.map((item) => (
+        <div className="flex items-center gap-4">
+          <nav className="hidden items-center space-x-6 md:flex">
+            {navItems.map((item) => (
+              <a
+                key={item.href}
+                href={item.href}
+                className="group relative text-slate-300 transition-colors hover:text-cyan-400"
+              >
+                {item.label}
+                <span className="absolute -bottom-1 left-0 h-0.5 w-0 bg-cyan-400 transition-all duration-300 group-hover:w-full" />
+              </a>
+            ))}
             <a
-              key={item.href}
-              href={item.href}
-              className="group relative text-slate-300 transition-colors hover:text-cyan-400"
+              href={hashLink("#contact")}
+              className="rounded-full bg-gradient-to-r from-cyan-600 to-blue-600 px-5 py-2 text-sm font-medium text-white shadow-md shadow-cyan-500/20 transition-all duration-300 hover:from-cyan-500 hover:to-blue-500 hover:shadow-lg hover:shadow-cyan-500/40"
             >
-              {item.label}
-              <span className="absolute -bottom-1 left-0 h-0.5 w-0 bg-cyan-400 transition-all duration-300 group-hover:w-full" />
+              {t.header.contact}
             </a>
-          ))}
-          <a
-            href={hashLink("#contact")}
-            className="rounded-full bg-gradient-to-r from-cyan-600 to-blue-600 px-5 py-2 text-sm font-medium text-white shadow-md shadow-cyan-500/20 transition-all duration-300 hover:from-cyan-500 hover:to-blue-500 hover:shadow-lg hover:shadow-cyan-500/40"
-          >
-            {t.header.contact}
-          </a>
-        </nav>
+          </nav>
+          <LanguageSwitcher />
+        </div>
       </div>
     </motion.header>
   )
